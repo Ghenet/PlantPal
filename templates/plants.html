@@ -1,15 +1,19 @@
 {% extends "layout.html" %} 
 
-{% from 'macros.html' import render_field %}
 
 {% block content %}
 <h2>🌱</h2>
 <form method="POST" action="" class="form">
     {{ form.hidden_tag() }}
-    {% for field in form %}
-        {{ render_field(field) }}
+    {% for plant in plants %}
+    <div data-name={{plant.name}} data-id={{plant.id}} class="plant-box" >
+        <h4>{{plant.name}}</h4>
+        <img src={{plant.image}}>
+        <p>{{plant.description}}</p>
+    </div>
     {% endfor %}
-    <button type="submit" id="submit">plant!</button>
+    <button type="submit" id="plant-submit">plant!</button>
 </form>
+
 {% endblock %}
 
