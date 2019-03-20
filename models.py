@@ -17,6 +17,14 @@ class User(UserMixin, Model):
     class Meta:
         database = DATABASE
 
+
+    @classmethod
+    def update_user(cls, userid, email):
+        user = User.select().where(user.id == userid).get()
+        user['email'] = email
+        user.save()
+        return jsonify(user)
+
     @classmethod
     def create_user(cls, username, email, password):
         try:
@@ -28,6 +36,56 @@ class User(UserMixin, Model):
                 )
         except IntegrityError:
             raise ValueError("user already exists")
+
+    def __repr__(self):
+        return "{}, {}, {}, {}".format(
+            self.id,
+            self.username,
+            self.email,
+            self.joined_at,
+        )
+        
+
+    # get all the plants that belong to a user from the join table
+    # def get_plants(self):
+    #     return UsersPlants.select().where(UsersPlants.user == self).get()
+
+    # def get_stream(self):
+    #     return UsersPlants.select().where(UsersPlants.user == self).get()
+
+    # DELETE
+    # to delete a user, delete all their plants first, then delete them from db
+
+    # PUT
+    # find the same user that matches self and update based on form data
+
+    
+    # DELETE
+    # def delete_users_plant(self, plant):
+    # this method should be called like current_user.delete_users_plant(plant.name)
+    # the plant name should come from form data on the front end
+        # get the user's plant based on self==user and plant==plant.name
+        # delete_instance() of the user's plant
+        # get all the plants that belong to the user now
+        # return those plants to app to be rendered
+
+    # PUT
+    # def update_users_plant_note(self, plant, note):
+    # this method should be called like current_user.update_users_plant(plant.name, note)
+    # the plant name should come from form data on the front end
+        # get the user's plant based on self==user and plant==plant.name
+        # update the user's plant note
+        # save
+        # return the plant
+    
+    # PUT
+    # def water_users_plant(self, plant, date_watered):
+    # date_watered should be the time when the request is made
+        # get the user's plant from the self==user, plant==plant.name
+        # update the plant's date_last_watered
+        # probably need to do some weird date time math here
+        # save
+        # return the plant
 
 class Plant(Model):
     name = CharField(unique = True)
@@ -49,6 +107,25 @@ class Plant(Model):
                 )
         except IntegrityError:
             raise ValueError("plant already exists")
+
+class UsersPlants(Model):
+    note = CharField(max_length=150)
+    date_added = DateTimeField(default=datetime.datetime.now())
+    date_last_watered = DateTimeField(default=datetime.datetime.now())
+    days_till_next_water = IntegerField(default=0)
+    user = ForeignKeyField(model=User, backref='usersplants')
+    plant = ForeignKeyField(model=Plant, backref='usersplants')
+
+    class Meta:
+        database = DATABASE
+
+    # POST
+    # @classmethod
+    # def create_users_plant(cls, note, user, plant):
+        # the note should come from the front end form
+        # the user should just be current_user
+        # the plant could come from the front end form
+        # error handling goes here
 
 def initialize():
     DATABASE.connect()
