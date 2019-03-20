@@ -50,7 +50,7 @@ class User(UserMixin, Model):
 
     # get all the plants that belong to a user from the join table
     def get_plants(self):
-        return UsersPlants.select().where(UsersPlants.user == self).get()
+        return UsersPlants.select().where(UsersPlants.user == self)
 
     # def get_stream(self):
     #     return UsersPlants.select().where(UsersPlants.user == self).get()

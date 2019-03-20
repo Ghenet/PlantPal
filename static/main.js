@@ -27,8 +27,8 @@ $(document).ready(function(){
             method: "POST",
             url: '/users_plants',
             data: {plantid: selection},
-            success: function(response){
-                console.log(response)
+            success: function(){
+                console.log(success)
             },
             error: function() {
                 console.log("error")

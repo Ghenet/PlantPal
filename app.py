@@ -96,8 +96,8 @@ def logout():
 @login_required
 def profile(username=None):
     user = current_user
-    # user.
-    return render_template("profile.html", user=user)
+    plants = user.get_plants()
+    return render_template("profile.html", user=user, plants=plants)
 
 
 @app.route('/plants/', methods=['GET', 'POST'])
