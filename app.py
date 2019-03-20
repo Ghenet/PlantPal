@@ -1,5 +1,5 @@
 # import flask framework. g stands for global allows us to use other variable in the project
-from flask import Flask, g
+from flask import Flask, g, request, jsonify
 from flask import render_template, flash, redirect, url_for
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from flask_bcrypt import check_password_hash
@@ -90,12 +90,16 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route("/profile", methods=["GET", "POST"])
+@app.route("/profile", methods=["GET", "POST", "PUT"])
 @app.route('/profile/<username>')
 @login_required
 def profile(username=None):
-    username=current_user.username
     user = current_user
+    if form.validate_on_submit():
+        flash('email updated')
+        updated_user = models.User.update_user(user.id, form.email.data)
+        return updated_user
+        # return render_template("profile.html", user=updated_user)
     return render_template("profile.html", user=user)
 
 
@@ -113,6 +117,34 @@ def plants():
         return redirect(url_for('profile'))
     return render_template('plants.html', form=form)
 
+
+#################### TESTING ROUTES ################################
+@app.route('/user', methods=['GET', 'POST'])
+@app.route('/user/<username>', methods=['GET', 'DELETE', 'PUT'])
+def user(username=None):
+    if username == None and request.method == 'GET':
+        return repr(models.User.select().get())
+    elif username != None and request.method == 'PUT':
+        email = request.json['email']
+        # password = form.password.data
+        user = models.User.select().where(models.User.username == username).get()
+        user.email = email
+        user.save()
+        return repr(user)
+    elif username != None and request.method == 'GET':
+        return repr(models.User.select().where(models.User.username==username).get())
+    elif username == None and request.method == 'POST':
+        created = models.User.create(
+            username = request.json['username'],
+            email = request.json['email'],
+            password = request.json['password']
+            )
+        user = models.User.select().where(models.User.username == created.username).get()
+        return repr(user)
+    else: 
+        user = models.User.select().where(models.User.username == username).get()
+        user.delete_instance()
+        return repr(user)
 
 if __name__ == '__main__':
     models.initialize()

@@ -17,12 +17,48 @@ class User(UserMixin, Model):
     class Meta:
         database = DATABASE
 
+
+    @classmethod
+    def update_user(cls, userid, email):
+        user = User.select().where(user.id == userid).get()
+        user['email'] = email
+        user.save()
+        return jsonify(user)
+
+    @classmethod
+    def create_user(cls, username, email, password):
+        try:
+            cls.create(
+                username=username,
+                email=email,
+                # this function is from bcrypt
+                password=generate_password_hash(password)
+                )
+        except IntegrityError:
+            raise ValueError("user already exists")
+
+    def __repr__(self):
+        return "{}, {}, {}, {}".format(
+            self.id,
+            self.username,
+            self.email,
+            self.joined_at,
+        )
+        
+
     # get all the plants that belong to a user from the join table
     # def get_plants(self):
-    #     return UsersPlants.select().where(UsersPlants.user == self)
+    #     return UsersPlants.select().where(UsersPlants.user == self).get()
 
     # def get_stream(self):
-    #     return UsersPlants.select().where(UsersPlants.user == self)
+    #     return UsersPlants.select().where(UsersPlants.user == self).get()
+
+    # DELETE
+    # to delete a user, delete all their plants first, then delete them from db
+
+    # PUT
+    # find the same user that matches self and update based on form data
+
     
     # DELETE
     # def delete_users_plant(self, plant):
@@ -50,18 +86,6 @@ class User(UserMixin, Model):
         # probably need to do some weird date time math here
         # save
         # return the plant
-
-    @classmethod
-    def create_user(cls, username, email, password):
-        try:
-            cls.create(
-                username=username,
-                email=email,
-                # this function is from bcrypt
-                password=generate_password_hash(password)
-                )
-        except IntegrityError:
-            raise ValueError("user already exists")
 
 class Plant(Model):
     name = CharField(unique = True)
@@ -94,9 +118,6 @@ class UsersPlants(Model):
 
     class Meta:
         database = DATABASE
-
-    
-
 
     # POST
     # @classmethod
