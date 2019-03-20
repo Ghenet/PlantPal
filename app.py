@@ -96,11 +96,7 @@ def logout():
 @login_required
 def profile(username=None):
     user = current_user
-    # if form.validate_on_submit():
-    #     flash('email updated')
-    #     updated_user = models.User.update_user(user.id, form.email.data)
-    #     # return updated_user
-    #     return render_template("profile.html", user=updated_user)
+    # user.
     return render_template("profile.html", user=user)
 
 
@@ -108,6 +104,7 @@ def profile(username=None):
 # @login_required
 def plants():
     form = forms.PlantForm()
+    plants = models.Plant.select()
     if form.validate_on_submit():
         flash('Plant made', 'success')
         models.Plant.create_plant(
@@ -116,7 +113,24 @@ def plants():
             water_interval_in_days=form.water_interval_in_days.data,
         )
         return redirect(url_for('profile'))
-    return render_template('plants.html', form=form)
+    return render_template('plants.html', plants=plants, form=form)
+
+@app.route('/users_plants', methods=['GET', 'POST'])
+def users_plants():
+    # user = current_user
+    # print(request.form)
+    # print(request.form.getlist("plantid[]"))
+    for plantid in request.form.getlist("plantid[]"):
+        print("plantid",plantid)
+        plant = models.Plant.get(models.Plant.id == plantid)
+        print("plant",plant)
+        print("userid",current_user.id)
+        user = models.User.get(models.User.id == current_user.id)
+        models.UsersPlants.create(
+            user=user,
+            plant=plant
+        )
+    return render_template('profile.html', user=current_user)
 
 
 
