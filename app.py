@@ -98,8 +98,8 @@ def profile(username=None):
     if form.validate_on_submit():
         flash('email updated')
         updated_user = models.User.update_user(user.id, form.email.data)
-        return updated_user
-        # return render_template("profile.html", user=updated_user)
+        # return updated_user
+        return render_template("profile.html", user=updated_user)
     return render_template("profile.html", user=user)
 
 
@@ -117,8 +117,10 @@ def plants():
         return redirect(url_for('profile'))
     return render_template('plants.html', form=form)
 
+###########################################################
+#################### TESTING ROUTES #######################
+###########################################################
 
-#################### TESTING ROUTES ################################
 @app.route('/user', methods=['GET', 'POST'])
 @app.route('/user/<username>', methods=['GET', 'DELETE', 'PUT'])
 def user(username=None):
