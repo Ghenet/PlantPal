@@ -39,8 +39,6 @@ class User(UserMixin, Model):
         except IntegrityError:
             raise ValueError("user already exists")
 
-<<<<<<< HEAD
-=======
     def __repr__(self):
         return "{}, {}, {}, {}".format(
             self.id,
@@ -51,8 +49,8 @@ class User(UserMixin, Model):
         
 
     # get all the plants that belong to a user from the join table
-    # def get_plants(self):
-    #     return UsersPlants.select().where(UsersPlants.user == self).get()
+    def get_plants(self):
+        return UsersPlants.select().where(UsersPlants.user == self).get()
 
     # def get_stream(self):
     #     return UsersPlants.select().where(UsersPlants.user == self).get()
@@ -90,7 +88,6 @@ class User(UserMixin, Model):
         # probably need to do some weird date time math here
         # save
         # return the plant
->>>>>>> f8d3c13fd530af4e0c5b612bde46af0f7cb6d44b
 
 class Plant(Model):
     name = CharField(unique=True)
@@ -114,45 +111,42 @@ class Plant(Model):
         except IntegrityError:
             raise ValueError("plant already exists")
 
-<<<<<<< HEAD
-
-class UserPlant(Model):
-    user = ForeignKeyField(User, backref="userplants")
-    plant = ForeignKeyField(Plant, backref="userplants")
-    last_watered = DateTimeField(default=datetime.datetime.now())
-    notes = CharField()
-=======
 class UsersPlants(Model):
-    note = CharField(max_length=150)
+    # note = CharField(max_length=150)
     date_added = DateTimeField(default=datetime.datetime.now())
     date_last_watered = DateTimeField(default=datetime.datetime.now())
     days_till_next_water = IntegerField(default=0)
     user = ForeignKeyField(model=User, backref='usersplants')
     plant = ForeignKeyField(model=Plant, backref='usersplants')
->>>>>>> f8d3c13fd530af4e0c5b612bde46af0f7cb6d44b
 
     class Meta:
         database = DATABASE
 
-<<<<<<< HEAD
-=======
     # POST
-    # @classmethod
-    # def create_users_plant(cls, note, user, plant):
+    @classmethod
+    def create_users_plant(cls, user, plantid):
         # the note should come from the front end form
+        plant = Plant.select().where(Plant.id == plantid)
+        try:
+            cls.create(
+                # note=note,
+                user=user,
+                plant=plant
+            )
+        except IntegrityError:
+            raise ValueError("error")
         # the user should just be current_user
         # the plant could come from the front end form
         # error handling goes here
->>>>>>> f8d3c13fd530af4e0c5b612bde46af0f7cb6d44b
 
 def initialize():
     DATABASE.connect()
-    DATABASE.create_tables([User, Plant, UserPlant], safe=True)
+    DATABASE.create_tables([User, Plant, UsersPlants], safe=True)
     # user = User.get(User.username == "user1")
     # plant = Plant.get(Plant.name == "cats")
-    # user = User.get(User.username == "user3")
+    # user = User.get(User.username == "night")
     # plant = Plant.get(Plant.name == "bears")
-    # UserPlant.create(user=user, plant=plant, notes="Bedroom plant")
+    # UsersPlants.create(user=user, plant=plant, notes="Bedroom plant")
     # UserPlant.select().delete()
     # user_seeds = (
     #     {'username': 'user1', "email": "abc@abc.com", "password": "123"},
