@@ -8,9 +8,11 @@ from flask_bcrypt import generate_password_hash
 DATABASE = SqliteDatabase('plantpal.db')
 
 # UserMixin help import the set of tools for login
+
+
 class User(UserMixin, Model):
-    username = CharField(unique = True)
-    email = CharField(unique = True)
+    username = CharField(unique=True)
+    email = CharField(unique=True)
     password = CharField(max_length=100)
     joined_at = DateTimeField(default=datetime.datetime.now())
 
@@ -33,10 +35,12 @@ class User(UserMixin, Model):
                 email=email,
                 # this function is from bcrypt
                 password=generate_password_hash(password)
-                )
+            )
         except IntegrityError:
             raise ValueError("user already exists")
 
+<<<<<<< HEAD
+=======
     def __repr__(self):
         return "{}, {}, {}, {}".format(
             self.id,
@@ -86,12 +90,14 @@ class User(UserMixin, Model):
         # probably need to do some weird date time math here
         # save
         # return the plant
+>>>>>>> f8d3c13fd530af4e0c5b612bde46af0f7cb6d44b
 
 class Plant(Model):
-    name = CharField(unique = True)
+    name = CharField(unique=True)
     description = CharField()
     water_interval_in_days = CharField()
-    image = CharField(default="https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/seedling.png")
+    image = CharField(
+        default="https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/seedling.png")
 
     class Meta:
         database = DATABASE
@@ -104,10 +110,18 @@ class Plant(Model):
                 description=description,
                 water_interval_in_days=water_interval_in_days,
                 image=image
-                )
+            )
         except IntegrityError:
             raise ValueError("plant already exists")
 
+<<<<<<< HEAD
+
+class UserPlant(Model):
+    user = ForeignKeyField(User, backref="userplants")
+    plant = ForeignKeyField(Plant, backref="userplants")
+    last_watered = DateTimeField(default=datetime.datetime.now())
+    notes = CharField()
+=======
 class UsersPlants(Model):
     note = CharField(max_length=150)
     date_added = DateTimeField(default=datetime.datetime.now())
@@ -115,10 +129,13 @@ class UsersPlants(Model):
     days_till_next_water = IntegerField(default=0)
     user = ForeignKeyField(model=User, backref='usersplants')
     plant = ForeignKeyField(model=Plant, backref='usersplants')
+>>>>>>> f8d3c13fd530af4e0c5b612bde46af0f7cb6d44b
 
     class Meta:
         database = DATABASE
 
+<<<<<<< HEAD
+=======
     # POST
     # @classmethod
     # def create_users_plant(cls, note, user, plant):
@@ -126,8 +143,26 @@ class UsersPlants(Model):
         # the user should just be current_user
         # the plant could come from the front end form
         # error handling goes here
+>>>>>>> f8d3c13fd530af4e0c5b612bde46af0f7cb6d44b
 
 def initialize():
     DATABASE.connect()
-    DATABASE.create_tables([User, Plant], safe=True)
+    DATABASE.create_tables([User, Plant, UserPlant], safe=True)
+    # user = User.get(User.username == "user1")
+    # plant = Plant.get(Plant.name == "cats")
+    # user = User.get(User.username == "user3")
+    # plant = Plant.get(Plant.name == "bears")
+    # UserPlant.create(user=user, plant=plant, notes="Bedroom plant")
+    # UserPlant.select().delete()
+    # user_seeds = (
+    #     {'username': 'user1', "email": "abc@abc.com", "password": "123"},
+    #     {'username': 'user2', "email": "abcd@abc.com", "password": "123"},
+    #     {'username': 'user3', "email": "abcde@abc.com", "password": "123"},
+    # )
+    # for user in user_seeds:
+    #     User.create_user(
+    #         username=user["username"],
+    #         email=user["email"],
+    #         password=user["password"],
+    #     )
     DATABASE.close()
