@@ -1,3 +1,4 @@
+
 # import flask framework. g stands for global allows us to use other variable in the project
 from flask import Flask, g, request, jsonify
 from flask import render_template, flash, redirect, url_for
