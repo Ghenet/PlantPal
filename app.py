@@ -57,6 +57,7 @@ def login():
             if check_password_hash(user.password, form.password.data):
                 login_user(user)    # creates a session and logs in the user
                 flash('Login was successful', 'success')
+                # update the user's plants with new days till_next_water
                 return redirect(url_for('profile'))
             else:
                 flash('Email or password incorrect.')
