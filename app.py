@@ -132,6 +132,19 @@ def users_plants():
         )
     return render_template('profile.html', user=current_user)
 
+
+
+# @app.route('/plants/', methods=['GET', 'DELETE'])
+# # @login_required
+# def deleteplants():
+#     form = forms.PlantForm()
+#     db = get_db()
+#     db.execute('delete from entries where id=' + entry_id)
+#     db.commit()
+#     flash('Entry deleted')
+#         )
+#         return redirect(url_for('profile'))
+#     return render_template('plants.html', form=form)
 ###########################################################
 #################### TESTING ROUTES #######################
 ###########################################################

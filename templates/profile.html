@@ -1,7 +1,28 @@
 {% extends "layout.html" %} {% block content %}
-<h2>{{ user.username }}</h2>
-<h3>{{ user.email }}</h3>
-{% for plant in plants %}
-    <h5>{{plant.name}}</h5>
-{% endfor %}
+<section class="container">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <div class="card">
+                <div class="card-header">{{ user.username }}</div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><h3>{{ user.email }}</h3></li>
+                    <li class="list-group-item"><h3>{{ user.joined_at}}</h3></li>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link btn btn-primary">Update Info</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 text-center">
+            <h2>{{ user.username }} plants</h2>
+            <div class="card" style="height: 18rem;width: 59rem;">
+            <img src="https://www.rhs.org.uk/getmedia/30f10baf-c1d3-4ef6-a0aa-b3d306404e32/Aeonium-balsamiferum_PUB0019453_82179.jpg?width=520&height=346" 
+            class="card-img-left" alt="..." style="height: 15rem;width: 19rem;">Plant1</div>
+            <div class="card" style="height: 18rem;width: 59rem;">Plant2</div>
+            <div class="card" style="height: 18rem;width: 59rem;">Plant3</div>
+            <div class="card-header" style="height: 18rem;width: 59rem;">Plant4</div>
+        </div>
+        </div>
+        
+</section>
 {% endblock %}
