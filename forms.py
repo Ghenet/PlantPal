@@ -53,4 +53,5 @@ class PlantForm(Form):
     description = StringField('Description', validators=[DataRequired()])
     water_interval_in_days = StringField('Frequency', validators=[DataRequired()])
 
+# class PlantDeleteForm(Form):
 

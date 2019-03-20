@@ -96,11 +96,11 @@ def logout():
 @login_required
 def profile(username=None):
     user = current_user
-    if form.validate_on_submit():
-        flash('email updated')
-        updated_user = models.User.update_user(user.id, form.email.data)
-        # return updated_user
-        return render_template("profile.html", user=updated_user)
+    # if form.validate_on_submit():
+    #     flash('email updated')
+    #     updated_user = models.User.update_user(user.id, form.email.data)
+    #     # return updated_user
+    #     return render_template("profile.html", user=updated_user)
     return render_template("profile.html", user=user)
 
 
@@ -118,6 +118,19 @@ def plants():
         return redirect(url_for('profile'))
     return render_template('plants.html', form=form)
 
+
+
+# @app.route('/plants/', methods=['GET', 'DELETE'])
+# # @login_required
+# def deleteplants():
+#     form = forms.PlantForm()
+#     db = get_db()
+#     db.execute('delete from entries where id=' + entry_id)
+#     db.commit()
+#     flash('Entry deleted')
+#         )
+#         return redirect(url_for('profile'))
+#     return render_template('plants.html', form=form)
 ###########################################################
 #################### TESTING ROUTES #######################
 ###########################################################
