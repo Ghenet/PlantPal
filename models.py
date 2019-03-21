@@ -49,8 +49,8 @@ class User(UserMixin, Model):
         
 
     # get all the plants that belong to a user from the join table
-    def get_plants(self):
-        return UsersPlants.select().where(UsersPlants.user == self).get()
+    # def get_plants(self):
+    #     return UsersPlants.select().where(UsersPlants.user == self).get()
 
     # def get_stream(self):
     #     return UsersPlants.select().where(UsersPlants.user == self).get()
@@ -123,18 +123,9 @@ class UsersPlants(Model):
         database = DATABASE
 
     # POST
-    @classmethod
-    def create_users_plant(cls, user, plantid):
+    # @classmethod
+    # def create_users_plant(cls, note, user, plant):
         # the note should come from the front end form
-        plant = Plant.select().where(Plant.id == plantid)
-        try:
-            cls.create(
-                # note=note,
-                user=user,
-                plant=plant
-            )
-        except IntegrityError:
-            raise ValueError("error")
         # the user should just be current_user
         # the plant could come from the front end form
         # error handling goes here
@@ -144,9 +135,9 @@ def initialize():
     DATABASE.create_tables([User, Plant, UsersPlants], safe=True)
     # user = User.get(User.username == "user1")
     # plant = Plant.get(Plant.name == "cats")
-    # user = User.get(User.username == "night")
+    # user = User.get(User.username == "user3")
     # plant = Plant.get(Plant.name == "bears")
-    # UsersPlants.create(user=user, plant=plant, notes="Bedroom plant")
+    # UserPlant.create(user=user, plant=plant, notes="Bedroom plant")
     # UserPlant.select().delete()
     # user_seeds = (
     #     {'username': 'user1', "email": "abc@abc.com", "password": "123"},
