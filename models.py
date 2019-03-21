@@ -46,6 +46,8 @@ class User(UserMixin, Model):
             self.joined_at,
         )
 
+
+    
     # get all the plants that belong to a user from the join table
     # def get_plants(self):
     #     return UsersPlants.select().where(UsersPlants.user == self).get()
@@ -111,7 +113,7 @@ class Plant(Model):
 
 
 class UsersPlants(Model):
-    note = CharField(max_length=150)
+    # note = CharField(max_length=150)
     date_added = DateTimeField(default=datetime.datetime.now())
     date_last_watered = DateTimeField(default=datetime.datetime.now())
     days_till_next_water = IntegerField(default=0)
@@ -123,12 +125,12 @@ class UsersPlants(Model):
 
     # POST
     @classmethod
-    def create_users_plant(cls, note, user, plantid):
+    def create_users_plant(cls, user, plantid):
         # the note should come from the front end form
         plant = Plant.select().where(Plant.id == plantid)
         try:
             cls.create(
-                note=note,
+                # note=note,
                 user=user,
                 plant=plant
             )
