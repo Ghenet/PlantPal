@@ -113,7 +113,7 @@ class Plant(Model):
 
 
 class UsersPlants(Model):
-    # note = CharField(max_length=150)
+    note = CharField(max_length=150)
     date_added = DateTimeField(default=datetime.datetime.now())
     date_last_watered = DateTimeField(default=datetime.datetime.now())
     days_till_next_water = IntegerField(default=0)
@@ -130,7 +130,7 @@ class UsersPlants(Model):
         plant = Plant.select().where(Plant.id == plantid)
         try:
             cls.create(
-                # note=note,
+                note=note,
                 user=user,
                 plant=plant
             )

@@ -131,6 +131,7 @@ def users_plants(usersplantid=None):
 
     # add in note to retrieve
     if usersplantid == None:
+        print('in post')
         for plantid, note in zip(request.form.getlist("plantid[]"), request.form.getlist("notes[]")):
             print("plantid",plantid)
             print("note", note)
@@ -138,6 +139,7 @@ def users_plants(usersplantid=None):
             print("plant",plant)
             print("userid",current_user.id)
             user = models.User.get(models.User.id == current_user.id)
+            note=note
             models.UsersPlants.create(
                 user=user,
                 plant=plant,
@@ -169,6 +171,42 @@ def water_plant(usersplantid):
         return redirect(url_for('profile'))
     else:
         return "error"
+
+@app.route('/edit_profile/' , methods=['GET','POST'])
+def edit_profile():
+    form = forms.EditUserForm()
+    if form.validate_on_submit():
+        try:
+            user = models.User.get(models.User.id == current_user.id)
+        except:
+            raise Exception("Please try again")
+        if user:
+            print('heyyy work please')
+            user.email = form.email.data
+            user.username = form.username.data
+            user.save()
+            return redirect(url_for('profile'))
+       
+    return render_template('edit_profile.html', form=form)
+
+
+
+
+
+@app.route('/edit_notes/<usersplantid>', methods =['GET' ,'POST'])
+def edit_notes(usersplantid):
+    form = forms.UsersPlantForm()
+    if form.validate_on_submit():
+        try:
+            update_plant = models.UsersPlants.get(models.UsersPlants.id == usersplantid)
+        except:
+            raise Exception("Please try again")
+        if user:
+            print('heyyy work please')
+            update_plant.note = form.note.data
+            update_plant.save()
+            return redirect(url_for('profile'))
+    return render_template('edit_notes.html', form=form)
 
 # @app.route('/plants/', methods=['GET', 'DELETE'])
 # # @login_required
@@ -217,12 +255,12 @@ def user(username=None):
 if __name__ == '__main__':
     models.initialize()
     try:
-        models.Plant.create_plant(
-            name="Spikey plant",
-            description="This is a spikey plant.",
-            water_interval_in_days= 20,
-            image="https://hotemoji.com/images/dl/o/seedling-emoji-by-google.png"
-        )
+        # models.Plant.create_plant(
+        #     name="Spikey plant",
+        #     description="This is a spikey plant.",
+        #     water_interval_in_days= 20,
+        #     image="https://hotemoji.com/images/dl/o/seedling-emoji-by-google.png"
+        # )
         models.Plant.create_plant(
             name="Happy plant",
             description="This is a happy plant.",
