@@ -18,15 +18,17 @@ $(document).ready(function(){
             return
         }
         let selection = []
+        let notes = []
         for(var i=0; i<selected.length; i++){
             selection.push(selected[i].getAttribute('data-id'))
+            notes.push(selected[i].childNodes[7].value)
         }
         console.log(selection)
 
         $.ajax({
             method: "POST",
             url: '/users_plants',
-            data: {plantid: selection},
+            data: {plantid: selection, notes: notes},
             success: function(response){
                 console.log(response)
                 window.location.href = '/profile'  
