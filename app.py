@@ -4,6 +4,7 @@ from flask import Flask, g, request, jsonify
 from flask import render_template, flash, redirect, url_for
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from flask_bcrypt import check_password_hash
+import datetime
 
 import models
 import forms
@@ -96,14 +97,23 @@ def logout():
 @login_required
 def profile(username=None):
     user = current_user
-    plants = user.get_plants()
-    return render_template("profile.html", user=user, plants=plants)
+    # query = models.UsersPlants.select().where(models.UsersPlants.user_id == current_user.id)
+    query = models.UsersPlants.select(models.Plant, models.UsersPlants).join(models.Plant).where(models.UsersPlants.user_id == current_user.id)
+    for usersplant in query:
+        print(usersplant.plant.name)
+        print(usersplant.plant.description)
+        print(usersplant.date_last_watered)
+        print(usersplant.plant.image)
+    # plants = user.get_plants()
+    # print(user.usersplants)
+    dateNow = datetime.datetime.now()
+    return render_template("profile.html", user=user, plants=query, dateNow=dateNow)
 
 
 @app.route('/plants/', methods=['GET', 'POST'])
 # @login_required
 def plants():
-    form = forms.PlantForm()
+    form = forms.UsersPlantForm()
     plants = models.Plant.select()
     if form.validate_on_submit():
         flash('Plant made', 'success')
@@ -116,23 +126,47 @@ def plants():
     return render_template('plants.html', plants=plants, form=form)
 
 @app.route('/users_plants', methods=['GET', 'POST'])
-def users_plants():
-    # user = current_user
-    # print(request.form)
-    # print(request.form.getlist("plantid[]"))
-    for plantid in request.form.getlist("plantid[]"):
-        print("plantid",plantid)
-        plant = models.Plant.get(models.Plant.id == plantid)
-        print("plant",plant)
-        print("userid",current_user.id)
-        user = models.User.get(models.User.id == current_user.id)
-        models.UsersPlants.create(
-            user=user,
-            plant=plant
-        )
-    return render_template('profile.html', user=current_user)
+@app.route('/users_plants/<usersplantid>', methods=['GET', 'DELETE'])
+def users_plants(usersplantid=None):
 
+    # add in note to retrieve
+    if usersplantid == None:
+        for plantid in request.form.getlist("plantid[]"):
+            print("plantid",plantid)
+            plant = models.Plant.get(models.Plant.id == plantid)
+            print("plant",plant)
+            print("userid",current_user.id)
+            user = models.User.get(models.User.id == current_user.id)
+            models.UsersPlants.create(
+                user=user,
+                plant=plant
+            )
+        return "success"
+    else:
+        try:
+            delete_plant = models.UsersPlants.get(models.UsersPlants.id == usersplantid)
+        except:
+            raise Exception('Session rollback')
+        if delete_plant:
+            delete_plant.delete_instance()
+            return redirect(url_for('profile'))
+        else:
+            return "error"
+    # return render_template('profile.html', user=current_user)
 
+@app.route('/users_plants/<usersplantid>/water', methods=['GET', 'PUT'])
+def water_plant(usersplantid):
+    try:
+        water_plant = models.UsersPlants.get(models.UsersPlants.id == usersplantid)
+    except:
+        raise Exception('Session rollback')
+    if water_plant:
+        water_plant.date_last_watered = datetime.datetime.now()
+        water_plant.save()
+        # return "watered"
+        return redirect(url_for('profile'))
+    else:
+        return "error"
 
 # @app.route('/plants/', methods=['GET', 'DELETE'])
 # # @login_required
@@ -183,6 +217,18 @@ if __name__ == '__main__':
             name="Spikey plant",
             description="This is a spikey plant.",
             water_interval_in_days= 20,
+            image="https://hotemoji.com/images/dl/o/seedling-emoji-by-google.png"
+        )
+        models.Plant.create_plant(
+            name="Happy plant",
+            description="This is a happy plant.",
+            water_interval_in_days= 7,
+            image="https://hotemoji.com/images/dl/o/seedling-emoji-by-google.png"
+        )
+        models.Plant.create_plant(
+            name="Grumpy plant",
+            description="This is a grumpy plant.",
+            water_interval_in_days= 14,
             image="https://hotemoji.com/images/dl/o/seedling-emoji-by-google.png"
         )
         print('created plant')

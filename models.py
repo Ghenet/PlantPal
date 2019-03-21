@@ -5,7 +5,7 @@ from peewee import *
 from flask_login import UserMixin
 from flask_bcrypt import generate_password_hash
 
-DATABASE = SqliteDatabase('plantpal.db')
+DATABASE = SqliteDatabase('plant-pal.db')
 
 # UserMixin help import the set of tools for login
 
@@ -112,7 +112,7 @@ class Plant(Model):
             raise ValueError("plant already exists")
 
 class UsersPlants(Model):
-    # note = CharField(max_length=150)
+    note = CharField(max_length=150)
     date_added = DateTimeField(default=datetime.datetime.now())
     date_last_watered = DateTimeField(default=datetime.datetime.now())
     days_till_next_water = IntegerField(default=0)
@@ -124,12 +124,12 @@ class UsersPlants(Model):
 
     # POST
     @classmethod
-    def create_users_plant(cls, user, plantid):
+    def create_users_plant(cls, note, user, plantid):
         # the note should come from the front end form
         plant = Plant.select().where(Plant.id == plantid)
         try:
             cls.create(
-                # note=note,
+                note=note,
                 user=user,
                 plant=plant
             )
