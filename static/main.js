@@ -27,14 +27,16 @@ $(document).ready(function(){
             method: "POST",
             url: '/users_plants',
             data: {plantid: selection},
-            success: function(){
-                console.log(success)
+            success: function(response){
+                console.log(response)
+                window.location.href = '/profile'  
             },
             error: function() {
                 console.log("error")
             }
         })
-            
         
     })
+
+    
 })
