@@ -24,6 +24,7 @@ $(document).ready(function(){
             notes.push(selected[i].childNodes[7].value)
         }
         console.log(selection)
+        console.log(notes)
 
         $.ajax({
             method: "POST",
