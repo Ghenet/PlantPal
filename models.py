@@ -5,7 +5,7 @@ from peewee import *
 from flask_login import UserMixin
 from flask_bcrypt import generate_password_hash
 
-DATABASE = SqliteDatabase('plantpal.db')
+DATABASE = SqliteDatabase('plant-pal.db')
 
 # UserMixin help import the set of tools for login
 
@@ -18,7 +18,6 @@ class User(UserMixin, Model):
 
     class Meta:
         database = DATABASE
-
 
     @classmethod
     def update_user(cls, userid, email):
@@ -46,7 +45,6 @@ class User(UserMixin, Model):
             self.email,
             self.joined_at,
         )
-        
 
     # get all the plants that belong to a user from the join table
     # def get_plants(self):
@@ -61,7 +59,6 @@ class User(UserMixin, Model):
     # PUT
     # find the same user that matches self and update based on form data
 
-    
     # DELETE
     # def delete_users_plant(self, plant):
     # this method should be called like current_user.delete_users_plant(plant.name)
@@ -79,7 +76,7 @@ class User(UserMixin, Model):
         # update the user's plant note
         # save
         # return the plant
-    
+
     # PUT
     # def water_users_plant(self, plant, date_watered):
     # date_watered should be the time when the request is made
@@ -88,6 +85,7 @@ class User(UserMixin, Model):
         # probably need to do some weird date time math here
         # save
         # return the plant
+
 
 class Plant(Model):
     name = CharField(unique=True)
@@ -111,8 +109,9 @@ class Plant(Model):
         except IntegrityError:
             raise ValueError("plant already exists")
 
+
 class UsersPlants(Model):
-    # note = CharField(max_length=150)
+    note = CharField(max_length=150)
     date_added = DateTimeField(default=datetime.datetime.now())
     date_last_watered = DateTimeField(default=datetime.datetime.now())
     days_till_next_water = IntegerField(default=0)
@@ -123,12 +122,25 @@ class UsersPlants(Model):
         database = DATABASE
 
     # POST
+    @classmethod
+    def create_users_plant(cls, note, user, plantid):
+        # the note should come from the front end form
+        plant = Plant.select().where(Plant.id == plantid)
+        try:
+            cls.create(
+                note=note,
+                user=user,
+                plant=plant
+            )
+        except IntegrityError:
+            raise ValueError("error")
     # @classmethod
     # def create_users_plant(cls, note, user, plant):
         # the note should come from the front end form
         # the user should just be current_user
         # the plant could come from the front end form
         # error handling goes here
+
 
 def initialize():
     DATABASE.connect()

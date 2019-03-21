@@ -15,12 +15,30 @@
         </div>
         <div class="col-md-8 text-center">
             <h2>{{ user.username }} plants</h2>
-            <div class="card" style="height: 18rem;width: 59rem;">
-            <img src="https://www.rhs.org.uk/getmedia/30f10baf-c1d3-4ef6-a0aa-b3d306404e32/Aeonium-balsamiferum_PUB0019453_82179.jpg?width=520&height=346" 
-            class="card-img-left" alt="..." style="height: 15rem;width: 19rem;">Plant1</div>
-            <div class="card" style="height: 18rem;width: 59rem;">Plant2</div>
-            <div class="card" style="height: 18rem;width: 59rem;">Plant3</div>
-            <div class="card-header" style="height: 18rem;width: 59rem;">Plant4</div>
+            <a href="/plants">Add plant</a>
+            
+            {% for plant in plants %}
+            <!-- <p>{{plant.name}}</p> -->
+                    <div class="card" style="height: 18rem;width: 59rem;" data-id={{plant.id}}>
+                        <img src="{{plant.plant.image}}" class="card-img-left" alt="..." style="height: 15rem;width: 19rem;">
+                        <div class="card-body">
+                        <h3 class="card-title">{{plant.plant.name}}</h3>
+                        <p class="card-text">{{plant.plant.description}}</p>
+                        <h4>Date last watered: {{plant.date_last_watered.strftime('%Y-%m-%d')}}</h4>
+                        <h4>Date added: {{plant.date_added.strftime('%Y-%m-%d')}}</h4>
+                        {% set number_days = (dateNow - plant.date_last_watered).days %}
+                        <p>Days till next water: 
+                            {{ number_days }} days
+                            {% if number_days|int() > plant.plant.water_interval_in_days|int() %}
+                            <p>You must water me!</p>
+                            {% endif %}
+                        </p>
+                        <a id="water-plant" class="btn btn-primary" href="users_plants/{{plant.id}}/water">Water</a>
+                        <a id="delete-plant" class="btn btn-danger" href="users_plants/{{plant.id}}">Delete</a>
+                        </div>
+                    </div>
+                    
+            {% endfor %}
         </div>
         </div>
         
