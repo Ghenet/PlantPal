@@ -117,11 +117,11 @@ def plants():
     plants = models.Plant.select()
     if form.validate_on_submit():
         flash('Plant made', 'success')
-        models.Plant.create_plant(
-            name=form.name.data,
-            description=form.description.data,
-            water_interval_in_days=form.water_interval_in_days.data,
-        )
+        # models.Plant.create_plant(
+        #     name=form.name.data,
+        #     description=form.description.data,
+        #     water_interval_in_days=form.water_interval_in_days.data,
+        # )
         return redirect(url_for('profile'))
     return render_template('plants.html', plants=plants, form=form)
 
@@ -131,15 +131,17 @@ def users_plants(usersplantid=None):
 
     # add in note to retrieve
     if usersplantid == None:
-        for plantid in request.form.getlist("plantid[]"):
+        for plantid, note in zip(request.form.getlist("plantid[]"), request.form.getlist("notes[]")):
             print("plantid",plantid)
+            print("note", note)
             plant = models.Plant.get(models.Plant.id == plantid)
             print("plant",plant)
             print("userid",current_user.id)
             user = models.User.get(models.User.id == current_user.id)
             models.UsersPlants.create(
                 user=user,
-                plant=plant
+                plant=plant,
+                note=note
             )
         return "success"
     else:
