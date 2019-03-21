@@ -10,6 +10,7 @@
         <h4>{{plant.name}}</h4>
         <img src={{plant.image}}>
         <p>{{plant.description}}</p>
+        {{form.note(placeholder="Any thing to add about this plant?")}}
     </div>
     {% endfor %}
     <button type="submit" id="plant-submit">plant!</button>

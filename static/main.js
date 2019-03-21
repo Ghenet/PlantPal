@@ -29,12 +29,14 @@ $(document).ready(function(){
             data: {plantid: selection},
             success: function(response){
                 console.log(response)
+                window.location.href = '/profile'  
             },
             error: function() {
                 console.log("error")
             }
         })
-            
         
     })
+
+    
 })
