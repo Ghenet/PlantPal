@@ -19,7 +19,6 @@ class User(UserMixin, Model):
     class Meta:
         database = DATABASE
 
-
     @classmethod
     def update_user(cls, userid, email):
         user = User.select().where(user.id == userid).get()
@@ -46,11 +45,10 @@ class User(UserMixin, Model):
             self.email,
             self.joined_at,
         )
-        
 
     # get all the plants that belong to a user from the join table
-    def get_plants(self):
-        return UsersPlants.select().where(UsersPlants.user == self).get()
+    # def get_plants(self):
+    #     return UsersPlants.select().where(UsersPlants.user == self).get()
 
     # def get_stream(self):
     #     return UsersPlants.select().where(UsersPlants.user == self).get()
@@ -61,7 +59,6 @@ class User(UserMixin, Model):
     # PUT
     # find the same user that matches self and update based on form data
 
-    
     # DELETE
     # def delete_users_plant(self, plant):
     # this method should be called like current_user.delete_users_plant(plant.name)
@@ -79,7 +76,7 @@ class User(UserMixin, Model):
         # update the user's plant note
         # save
         # return the plant
-    
+
     # PUT
     # def water_users_plant(self, plant, date_watered):
     # date_watered should be the time when the request is made
@@ -88,6 +85,7 @@ class User(UserMixin, Model):
         # probably need to do some weird date time math here
         # save
         # return the plant
+
 
 class Plant(Model):
     name = CharField(unique=True)
@@ -111,6 +109,7 @@ class Plant(Model):
         except IntegrityError:
             raise ValueError("plant already exists")
 
+
 class UsersPlants(Model):
     # note = CharField(max_length=150)
     date_added = DateTimeField(default=datetime.datetime.now())
@@ -123,30 +122,22 @@ class UsersPlants(Model):
         database = DATABASE
 
     # POST
-    @classmethod
-    def create_users_plant(cls, user, plantid):
+    # @classmethod
+    # def create_users_plant(cls, note, user, plant):
         # the note should come from the front end form
-        plant = Plant.select().where(Plant.id == plantid)
-        try:
-            cls.create(
-                # note=note,
-                user=user,
-                plant=plant
-            )
-        except IntegrityError:
-            raise ValueError("error")
         # the user should just be current_user
         # the plant could come from the front end form
         # error handling goes here
+
 
 def initialize():
     DATABASE.connect()
     DATABASE.create_tables([User, Plant, UsersPlants], safe=True)
     # user = User.get(User.username == "user1")
     # plant = Plant.get(Plant.name == "cats")
-    # user = User.get(User.username == "night")
+    # user = User.get(User.username == "user3")
     # plant = Plant.get(Plant.name == "bears")
-    # UsersPlants.create(user=user, plant=plant, notes="Bedroom plant")
+    # UserPlant.create(user=user, plant=plant, notes="Bedroom plant")
     # UserPlant.select().delete()
     # user_seeds = (
     #     {'username': 'user1', "email": "abc@abc.com", "password": "123"},
