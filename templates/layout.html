@@ -10,6 +10,12 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="../static/login.css" />
     <link rel="stylesheet" href="../static/main.css" />
     <title>PlantPal</title>
@@ -46,15 +52,61 @@
     <div class="{{ category }}">{{ message }}</div>
     {% endfor %} {% endif %} {% endwith %} {% block content %} {% endblock %}
 
-    <!-- <script
-        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script> -->
-    <!-- <script
-      src="/docs/4.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
-      crossorigin="anonymous"
-    ></script> -->
+    <footer id="footer" class="mt-5">
+      <div class="container d-flex align-items-start flex-column">
+        <div class="row  d-flex align-items-center">
+          <div class="col-md-4 text-center">
+            <h3>PlantPal</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
+              doloremque non aspernatur commodi. Doloribus earum veniam, eum
+              dolore voluptatum saepe illum voluptates architecto accusamus
+              facere possimus magnam, placeat cupiditate, quia qui non.
+            </p>
+          </div>
+          <div class="col-md-4 text-center footer-section">
+            <h3>Contact</h3>
+            <div class="footer-text-container">
+              <p><strong>Address:</strong></p>
+              <p>1234 Lorem Ipsum Ave, San Francisco CA</p>
+            </div>
+            <div class="footer-text-container">
+              <p><strong>Email</strong></p>
+              <p>email@emailtime.plants</p>
+            </div>
+            <div class="footer-text-container">
+              <p><strong>Phone:</strong></p>
+              <p>415-911-4321</p>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <h3>Links</h3>
+            <div>
+              <ul>
+                <li>
+                  <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="/signup">Login</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="/about">About</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="/">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+          <span><i class="fab fa-facebook"></i></span>
+          <span><i class="fab fa-instagram"></i></span>
+          <span><i class="fab fa-tumblr-square"></i></span>
+          <span><i class="fab fa-pinterest-square"></i></span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
