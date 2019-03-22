@@ -14,6 +14,26 @@ html {
 .selected {
   background: red;
 }
+nav, h1, h2, #submit {
+  color: #042108;
+  font-family: 'Assistant', sans-serif;
+  text-transform: uppercase;
+}
+
+nav{
+  background: linear-gradient(90deg, rgba(169,219,179,1) 0%, rgba(4,33,8,1) 100%);
+}
+
+nav a, #header div a{
+  color:#042108;
+  letter-spacing: 3px;
+}
+
+a:hover{
+  color: white
+}
+
+
 
 header {
   height: 80vh;
@@ -29,13 +49,45 @@ header {
   background-size: cover;
 }
 
+#header div h1{
+  font-size: 80px;
+  letter-spacing: 15px
+}
+
+h2 {
+  letter-spacing: 10px;
+}
+
+.btn-primary {
+  background: #a9dbb3;
+  border-color: #042108;
+
+}
+
+.btn-outline-primary{
+  border: 1px solid #042108
+}
+
+.btn-primary:hover {
+  background: white;
+  border-color: #042108
+  
+}
+
+.btn-outline-primary:hover {
+  background: #a9dbb3;
+  border-color: #042108
+}
+
 #about {
   background-color: #a9dbb3;
 }
 
 #footer {
   height: 20em;
-  background-color: #042108;
+  /* background-color: #042108; */
+  background: linear-gradient(90deg, rgba(4,33,8,1) 0%, rgba(169,219,179,1) 100%);
+
   color: #d3d3d3;
 }
 
