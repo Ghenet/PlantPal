@@ -3,6 +3,10 @@ body{
     background-size:  cover; 
     /* background-repeat: no-repeat;  */
 }
+
+body .container{
+    width: 100%;
+}
 /* .jumbotron{
     background-image: url();
 } */
