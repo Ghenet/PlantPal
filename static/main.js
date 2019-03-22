@@ -21,10 +21,11 @@ $(document).ready(function(){
         let notes = []
         for(var i=0; i<selected.length; i++){
             selection.push(selected[i].getAttribute('data-id'))
-            notes.push(selected[i].childNodes[7].value)
+            notes.push(selected[i].childNodes[9].value)
         }
         console.log(selection)
-
+        console.log(notes)
+        debugger;
         $.ajax({
             method: "POST",
             url: '/users_plants',

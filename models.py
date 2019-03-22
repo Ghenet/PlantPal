@@ -46,6 +46,8 @@ class User(UserMixin, Model):
             self.joined_at,
         )
 
+
+    
     # get all the plants that belong to a user from the join table
     # def get_plants(self):
     #     return UsersPlants.select().where(UsersPlants.user == self).get()
@@ -123,7 +125,7 @@ class UsersPlants(Model):
 
     # POST
     @classmethod
-    def create_users_plant(cls, note, user, plantid):
+    def create_users_plant(cls, user, plantid):
         # the note should come from the front end form
         plant = Plant.select().where(Plant.id == plantid)
         try:
