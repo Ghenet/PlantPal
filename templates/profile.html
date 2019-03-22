@@ -1,32 +1,81 @@
-{% extends "layout.html" %} {% block content %}
-<section class="container">
-    <div class="row">
+{% extends "layout.html" %} 
+{% block content %}
+<!-- <div class="container"> -->
+    <div class="row mt-5 mr-10">
         <div class="col-md-4 text-center">
-            <div class="card">
-                <div class="card-header"><h1>{{ user.username }}</h1></div>
+            <div class="card col-md-10 ml-3">
+                <img  src=" {{url_for('static', filename='user.png') }}" style="align-self: center; height: 200px;width: 230px;"/>
+                 <div class="card-header"><h1>{{ user.username }}</h1></div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><h3>{{ user.email }}</h3></li>
                     <li class="list-group-item"><h3>{{ user.joined_at.strftime('%Y-%m-%d')}}</h3></li>
                 </ul>
-                <div class="card-body">
+                <div class="card-body mr-3">
                     <a href="/edit_profile/" class="card-link btn btn-primary btn-block" >Update Profile</a>
+            
+                    
+                    <a class="btn btn-primary mt-3" href="/plants">Add plant</a>
                 </div>
             </div>
-        </div>
-        <div class="col-md-8 text-center">
-            <h2>{{ user.username }} plants</h2>
-            <a href="/plants">Add plant</a>
+            </div>
+
+        
+        <div class="col-md-8 text-center ml-18 mb-2">
             
+            <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+
+            <div class=" col-md-12 jumbotron p-4 p-md-5 text-white rounded mr-3 " style="background-image: url(https://media.giphy.com/media/txCo7WXCwZpmM/giphy.gif);
+            background-size: cover;">
+                <div class="col-md-6 px-0">
+                   <h1 class="display-4 font-italic "style="font-family: LSLeaves;">Hello {{ user.username }} </h1>
+                  <p class="lead my-3">Your plants should Be-leaf in you , Don't leaf them alone.Water them.</p>
+                  <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
+                </div>
+              </div>
+
+
+              <div class="container">
             {% for plant in plants %}
-            <!-- <p>{{plant.name}}</p> -->
-                    <div class="card" style="height: 18rem;width: 59rem;" data-id={{plant.id}}>
-                        <img src="{{plant.plant.image}}" class="card-img-left" alt="..." style="height: 15rem;width: 19rem;">
+          
+
+            <div class="row mb-2 ">
+                <div class="col-md-6">
+                      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-150 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                          
+                          <h3 class="mb-0">{{plant.plant.name}}</h3>
+                          <div class="mb-1 text-white">{{plant.plant.description}}</div>
+                          <p class="card-text mb-auto"><h5>Date last watered: {{plant.date_last_watered.strftime('%Y-%m-%d')}}</h5>
+                            <h5>Date added: {{plant.date_added.strftime('%Y-%m-%d')}}</h5>
+                            {% set number_days = (dateNow - plant.date_last_watered).days %}
+                            <p>Days till next water: 
+                                {{ number_days }} days
+                                {% if number_days|int() > plant.plant.water_interval_in_days|int() %}
+                                <p>You must water me!</p>
+                                {% endif %}
+                            </p>
+                            <a id="water-plant" class="btn btn-primary m-2 " href="users_plants/{{plant.id}}/water">Water</a>
+                            <a id="delete-plant" class="btn btn-danger  m-2 " href="users_plants/{{plant.id}}">Delete</a>
+                    
+                          
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
+                                <img src="{{plant.plant.image}}" class="card-img-left mr-10" alt="..." style="height: 265px;width: 270px;">
+                    </div> 
+
+                </div>
+            </div>
+            </div>
+
+                    <!-- <div class="card p-2 shadow-lg m-13 p-2" style="height: 22rem;width: 59rem;" data-id={{plant.id}}>
+                        <img src="{{plant.plant.image}}" class="card-img-left mr-10" alt="..." style="height: 1rem;width: 2rem;">
                         <div class="card-body">
                         <h3 class="card-title">{{plant.plant.name}}</h3>
-                        <p class="card-text">{{plant.plant.description}}</p>
+                        
+                        <p class="card-text"><h4>{{plant.plant.description}}</h4></p>
                         <p>Notes: {{plant.note}} <a href="/edit_notes/{{plant.id}}" class="btn-primary">Edit</a></p>
-                        <h4>Date last watered: {{plant.date_last_watered.strftime('%Y-%m-%d')}}</h4>
-                        <h4>Date added: {{plant.date_added.strftime('%Y-%m-%d')}}</h4>
+                        <h5>Date last watered: {{plant.date_last_watered.strftime('%Y-%m-%d')}}</h5>
+                        <h5>Date added: {{plant.date_added.strftime('%Y-%m-%d')}}</h5>
                         {% set number_days = (dateNow - plant.date_last_watered).days %}
                         <p>Days till next water: 
                             {{ number_days }} days
@@ -34,14 +83,16 @@
                             <p>You must water me!</p>
                             {% endif %}
                         </p>
-                        <a id="water-plant" class="btn btn-primary" href="users_plants/{{plant.id}}/water">Water</a>
-                        <a id="delete-plant" class="btn btn-danger" href="users_plants/{{plant.id}}">Delete</a>
-                        </div>
+                        <a id="water-plant" class="btn btn-primary mt-3" href="users_plants/{{plant.id}}/water">Water</a>
+                        <a id="delete-plant" class="btn btn-danger mt-3" href="users_plants/{{plant.id}}">Delete</a>
+                        
                     </div>
+                    </div>  -->
                     
             {% endfor %}
         </div>
-        </div>
+    </div>
+    
         
-</section>
+</div>
 {% endblock %}

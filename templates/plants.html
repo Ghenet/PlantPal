@@ -3,6 +3,8 @@
 
 {% block content %}
 <h2>🌱</h2>
+<div class="card p-2 shadow-lg m-13 p-2" style="height: 22rem;width: 59rem;">
+                   
 <form method="POST" action="" class="form">
     {{ form.hidden_tag() }}
     
@@ -11,13 +13,13 @@
     
     <div data-name={{plant.name}} data-id={{plant.id}} class="plant-box" >
         <h4>{{plant.name}}</h4>
-        <img src={{plant.image}}>
-        <p>{{plant.description}}</p>
+        <img src="{{plant.image}}" class="card-img-left mr-10" alt="..." style="height: 1rem;width: 2rem;">
+        <p class="card-text"><h4>{{plant.description}}</h4></p>
         <textarea  placeholder="Add any notes?"></textarea>
     </div>
     {% endfor %}
     <button type="submit" id="plant-submit">plant!</button>
 </form>
+</div>
 
 {% endblock %}
-
