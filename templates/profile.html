@@ -5,13 +5,13 @@
         <div class="col-md-4 text-center">
             <div class="card col-md-10 ml-3">
                 <img  src=" {{url_for('static', filename='user.png') }}" style="align-self: center; height: 200px;width: 230px;"/>
-                 <div class="card-header"><h1>{{ user.username }}</h1></div>
+                 <div class="card-header"><h3>{{ user.username }}</h3></div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><h3>{{ user.email }}</h3></li>
-                    <li class="list-group-item"><h3>{{ user.joined_at.strftime('%Y-%m-%d')}}</h3></li>
+                    <li class="list-group-item"><h4>{{ user.email }}</h4></li>
+                    <li class="list-group-item"><h4>{{ user.joined_at.strftime('%Y-%m-%d')}}</h4></li>
                 </ul>
                 <div class="card-body mr-3">
-                    <a href="/edit_profile/" class="card-link btn btn-primary btn-block" >Update Profile</a>
+                    <a href="/edit_profile/" class="card-link btn btn-primary btn-block">Update Profile</a>
             
                     
                     <a class="btn btn-primary mt-3 btn-block" href="/plants">Add plant</a>
@@ -27,8 +27,8 @@
 
             <div class=" col-md-12 jumbotron p-4 p-md-5 text-white rounded mr-3" style="background-image: url(https://media.giphy.com/media/txCo7WXCwZpmM/giphy.gif);
             background-size: cover;">
-                <div class="col-md-6 px-0 mr-5">
-                   <h1 class="display-4 font-italic "style="font-family: LSLeaves;">Hello {{ user.username }} </h1>
+                <div class="col-md-6 px-0">
+                   <h1 class="display-4">Hello {{ user.username }} </h1>
                   <p class="lead my-3">Your plants should Be-leaf in you , Don't leaf them alone.Water them.</p>
                
                 </div>
@@ -47,7 +47,7 @@
                           <h3 class="mb-0">{{plant.plant.name}}</h3>
                           <div class="mb-1 text-white">{{plant.plant.description}}</div>
                           <p class="card-text mb-auto"><h5>Date last watered: {{plant.date_last_watered.strftime('%Y-%m-%d')}}</h5>
-                            <p>Notes: {{plant.note}} <a href="/edit_notes/{{plant.id}}" class=" btn p-1 btn-primary">Edit</a></p>
+                            <p>Notes: {{plant.note}} <a href="/edit_notes/{{plant.id}}" class="card-link btn p-1 btn-primary">Edit</a></p>
                             <h5>Date added: {{plant.date_added.strftime('%Y-%m-%d')}}</h5>
                             {% set number_days = (dateNow - plant.date_last_watered).days %}
                             <p>Days till next water: 
@@ -56,7 +56,7 @@
                                 <p>You must water me!</p>
                                 {% endif %}
                             </p>
-                            <a id="water-plant" class="btn btn-primary m-2 " href="users_plants/{{plant.id}}/water">Water</a>
+                            <a id="water-plant" class="btn btn-info m-2 " href="users_plants/{{plant.id}}/water">Water</a>
                             <a id="delete-plant" class="btn btn-danger  m-2 " href="users_plants/{{plant.id}}">Delete</a>
                     
                           

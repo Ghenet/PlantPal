@@ -4,6 +4,13 @@ body{
     /* background-repeat: no-repeat;  */
 }
 
+h3, h4 {
+    font-family: 'Assistant', sans-serif;
+}
+
+.card-link, .mt-3 {
+    color: #042108
+}
 .card{
     background-image: url(green.jpg);
 }

@@ -1,4 +1,24 @@
+body {
+    background-image: url('succulent-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat
+}
 
+section{
+    height: 92vh
+}
+
+.login{
+    background: white;
+    /* margin: 0 20%;*/
+    padding-bottom: 5%; 
+    border-radius: 15px;
+    border: 2px solid #042108
+}
+
+textarea {
+    width: 20%;
+}
 
 .form-container {
     width: 20em 
