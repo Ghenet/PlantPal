@@ -1,5 +1,5 @@
 body{
-    background-image: url(https://media.giphy.com/media/4How4vb1GsLTi/giphy.gif);
+    background-color: rgb(166, 219, 196);
     background-size:  cover; 
     /* background-repeat: no-repeat;  */
 }
@@ -11,6 +11,13 @@ h3, h4 {
 .card-link, .mt-3 {
     color: #042108
 }
+.card{
+    background-image: url(green.jpg);
+}
 /* .jumbotron{
     background-image: url();
 } */
+
+.single-card{
+    background-color: #71bc78;
+}
