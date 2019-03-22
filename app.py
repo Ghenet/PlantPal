@@ -208,16 +208,7 @@ def edit_notes(usersplantid):
             return redirect(url_for('profile'))
     return render_template('edit_notes.html', form=form)
 
-# @app.route('/plants/', methods=['GET', 'DELETE'])
-# # @login_required
-# def deleteUsersplants():
-#     form = forms.PlantForm()
-#     db = get_db()
-#     db.execute('delete from entries where id=' + entry_id)
-#     db.commit()
-#     flash('Entry deleted'))
-#         return redirect(url_for('profile'))
-#     return render_template('plants.html', form=form)
+
 ###########################################################
 #################### TESTING ROUTES #######################
 ###########################################################
