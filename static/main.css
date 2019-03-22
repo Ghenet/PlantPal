@@ -1,5 +1,6 @@
 /* light green #A9DBB3 */
 /* Dark green #042108 */
+/* less dark green? #195621 */
 
 * {
   margin: 0;
@@ -36,7 +37,7 @@ a:hover{
 
 
 header {
-  height: 80vh;
+  height: 85vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -44,7 +45,8 @@ header {
 }
 
 #header {
-  background: url("https://images.unsplash.com/photo-1457530378978-8bac673b8062?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80");
+  background-image: url('landing.jpg');
+  /* background: url("https://images.unsplash.com/photo-1457530378978-8bac673b8062?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"); */
   background-position: center;
   background-size: cover;
 }
@@ -68,6 +70,10 @@ h2 {
   border: 1px solid #042108
 }
 
+.btn:hover{
+  color: #042108
+}
+
 .btn-primary:hover {
   background: white;
   border-color: #042108
@@ -84,11 +90,19 @@ h2 {
 }
 
 #footer {
-  height: 20em;
-  /* background-color: #042108; */
   background: linear-gradient(90deg, rgba(4,33,8,1) 0%, rgba(169,219,179,1) 100%);
-
+  height: 18em;
+  /* background-color: #195120; */
   color: #d3d3d3;
+  padding-top: 15px;
+}
+
+#footer a {
+  color: #d3d3d3 !important;
+}
+
+#footer .socials {
+  background-color: #042108;
 }
 
 #footer p {

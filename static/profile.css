@@ -3,6 +3,14 @@ body{
     background-size:  cover; 
     /* background-repeat: no-repeat;  */
 }
+
+h3, h4 {
+    font-family: 'Assistant', sans-serif;
+}
+
+.card-link, .mt-3 {
+    color: #042108
+}
 /* .jumbotron{
     background-image: url();
 } */
