@@ -1,5 +1,6 @@
 /* light green #A9DBB3 */
 /* Dark green #042108 */
+/* less dark green? #195621 */
 
 * {
   margin: 0;
@@ -34,9 +35,17 @@ header {
 }
 
 #footer {
-  height: 20em;
-  background-color: #042108;
+  height: 18em;
+  background-color: #195120;
   color: #d3d3d3;
+}
+
+#footer a {
+  color: #d3d3d3 !important;
+}
+
+#footer .socials {
+  background-color: #042108;
 }
 
 #footer p {

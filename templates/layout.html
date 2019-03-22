@@ -51,5 +51,57 @@
     messages %} {% for category, message in messages %}
     <div class="{{ category }}">{{ message }}</div>
     {% endfor %} {% endif %} {% endwith %} {% block content %} {% endblock %}
+    <footer id="footer" class="mt-5">
+      <div class="container-fluid  d-flex flex-column justify-content-between">
+        <div class="row d-flex py-4 px-4 align-items-stretch">
+          <div class="col-md-4 text-center">
+            <h3>PlantPal</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
+              doloremque non aspernatur commodi. Doloribus earum veniam, eum
+              dolore voluptatum saepe illum voluptates architecto accusamus
+              facere possimus magnam, placeat cupiditate, quia qui non.
+            </p>
+          </div>
+          <div class="col-md-4 text-center">
+            <h3>Contact</h3>
+            <div class="footer-text-container">
+              <p><strong>Address:</strong></p>
+              <p>1234 Lorem Ipsum Ave, San Francisco CA</p>
+            </div>
+            <div class="footer-text-container">
+              <p><strong>Email</strong></p>
+              <p>email@emailtime.plants</p>
+            </div>
+            <div class="footer-text-container">
+              <p><strong>Phone:</strong></p>
+              <p>415-911-4321</p>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <h3>Links</h3>
+            <div>
+              <ul>
+                <li>
+                  <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="/about">About</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="/">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex justify-content-center socials py-3">
+          <span><a href="#"><i class="fab fa-facebook fa-3x pr-5"></a></i></span>
+          <span><a href="#"><i class="fab fa-instagram fa-3x pr-5"></i></a></span>
+          <span><a href="#"><i class="fab fa-tumblr-square fa-3x pr-5"></i></a></span>
+          <span><a href="#"><i class="fab fa-pinterest-square fa-3x pr-5"></i></a></span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
