@@ -7,14 +7,17 @@
   padding: 0;
 }
 
+body {
+  box-sizing: border-box;
+  font-family: 'Assistant', sans-serif;
+}
+
 /* body,
 html {
   height: 100%;
   width: 100%;
 } */
-.selected {
-  background: red;
-}
+
 nav, h1, h2, #submit {
   color: #042108;
   font-family: 'Assistant', sans-serif;

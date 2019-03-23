@@ -1,0 +1,26 @@
+.plants-heading, .plant-btn{
+    text-align: center;
+    margin: 15px;
+}
+
+/* img {
+    height: 5vh;
+    width: 5vw
+} */
+
+.plant-box{
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.card-body{
+    text-align: center
+}
+
+.plant-btn{
+    color:#042108;
+}
+
+.selected {
+    background: #d3d3d3;
+}

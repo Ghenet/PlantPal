@@ -71,7 +71,6 @@ def signup():
     form = forms.RegisterForm()
     # when the form is validated and submitted, create a new user
     if form.validate_on_submit():
-        flash('Yay you registered', 'success')
         models.User.create_user(
             username=form.username.data,
             email=form.email.data,
@@ -245,12 +244,12 @@ def user(username=None):
 if __name__ == '__main__':
     models.initialize()
     try:
-        # models.Plant.create_plant(
-        #     name="Spikey plant",
-        #     description="This is a spikey plant.",
-        #     water_interval_in_days= 20,
-        #     image="https://hotemoji.com/images/dl/o/seedling-emoji-by-google.png"
-        # )
+        models.Plant.create_plant(
+            name="Spikey plant",
+            description="This is a spikey plant.",
+            water_interval_in_days= 20,
+            image="https://hotemoji.com/images/dl/o/seedling-emoji-by-google.png"
+        )
         models.Plant.create_plant(
             name="Happy plant",
             description="This is a happy plant.",

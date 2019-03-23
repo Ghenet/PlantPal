@@ -2,23 +2,32 @@
 
 
 {% block content %}
-<h2>🌱</h2>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='plants.css') }}">
+
+<h2 class="plants-heading">Pick your plants</h2>
 <!-- <div class="card p-2 shadow-lg m-13 p-2" style="height: 22rem;width: 59rem;"> -->
                    
 <form method="POST" action="" class="form">
     {{ form.hidden_tag() }}
     
-    {% for plant in plants %}
-    
-    
-    <div data-name={{plant.name}} data-id={{plant.id}} class="plant-box" >
-        <h4>{{plant.name}}</h4>
-        <img src="{{plant.image}}" class="card-img-left mr-10" alt="..." style="height: 1rem;width: 2rem;">
-        <p class="card-text"><h4>{{plant.description}}</h4></p>
-        <textarea  placeholder="Add any notes?"></textarea>
+    <div class="container">
+        <div class="row">
+        {% for plant in plants %}
+            <div class="col-sm-6">
+                <div data-id={{plant.id}} class="card plant-box" >
+                    <div class=card-body>
+                        <h4 class="card-title">{{plant.name}}</h4>
+                        <img src="{{plant.image}}" class="card-img-left mr-10" alt="..." style="height: 1rem;width: 2rem;">
+                        <p class="card-text">{{plant.description}}</p>
+                        <textarea placeholder="Add any notes?" ></textarea>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-    <button type="submit" id="plant-submit">plant!</button>
+        <button class="btn btn-primary" type="submit" id="plant-submit">Pick Plants</button>
+    </div>
 </form>
 </div>
 
