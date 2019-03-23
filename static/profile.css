@@ -1,19 +1,26 @@
+html{
+    box-sizing: border-box;
+}
+
 body{
     background-color: rgb(166, 219, 196);
     background-size:  cover; 
+    margin:0;
+    padding: 0;
     /* background-repeat: no-repeat;  */
 }
 
 h3, h4 {
     font-family: 'Assistant', sans-serif;
 }
+.card-header{
+    background-color: transparent;
+}
 
 .card-link, .mt-3 {
     color: #042108
 }
-.card{
-    background-image: url(green.jpg);
-}
+
 /* .jumbotron{
     background-image: url();
 } */
