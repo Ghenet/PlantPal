@@ -21,11 +21,11 @@ $(document).ready(function() {
     let notes = [];
     for (var i = 0; i < selected.length; i++) {
       selection.push(selected[i].getAttribute("data-id"));
-      notes.push(selected[i].childNodes[9].value);
+      // debugger;
+      notes.push(selected[0].childNodes[1].childNodes[9].value);
     }
     console.log(selection);
     console.log(notes);
-
     $.ajax({
       method: "POST",
       url: "/users_plants",
