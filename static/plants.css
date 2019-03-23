@@ -24,3 +24,7 @@
 .selected {
     background: #d3d3d3;
 }
+
+.button-box {
+    text-align: center;
+}
