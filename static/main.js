@@ -22,7 +22,7 @@ $(document).ready(function() {
     for (var i = 0; i < selected.length; i++) {
       selection.push(selected[i].getAttribute("data-id"));
       // debugger;
-      notes.push(selected[0].childNodes[1].childNodes[9].value);
+      notes.push(selected[0].childNodes[1].childNodes[7].value);
     }
     console.log(selection);
     console.log(notes);
