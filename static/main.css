@@ -52,6 +52,7 @@ header {
   /* background: url("https://images.unsplash.com/photo-1457530378978-8bac673b8062?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"); */
   background-position: center;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 #header div h1{
@@ -70,6 +71,7 @@ h2 {
 }
 
 .btn-outline-primary{
+  background: #a9dbb3;
   border: 1px solid #042108
 }
 
@@ -84,7 +86,7 @@ h2 {
 }
 
 .btn-outline-primary:hover {
-  background: #a9dbb3;
+  background: white;
   border-color: #042108
 }
 

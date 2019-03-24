@@ -14,11 +14,11 @@
     <div class="container">
         <div class="row">
         {% for plant in plants %}
-            <div class="col-sm-6">
+            <div class="col-md-4">
                 <div data-id={{plant.id}} class="card plant-box" >
                     <div class=card-body>
                         <h4 class="card-title">{{plant.name}}</h4>
-                        <img src="{{plant.image}}" class="card-img-left mr-10" alt="..." style="height: 1rem;width: 2rem;">
+                        <img src="{{plant.image}}" class="card-img-left mr-10" alt="..." style="height: 100px;width: 100px;">
                         <p class="card-text">{{plant.description}}</p>
                         <textarea placeholder="Add any notes?" ></textarea>
                     </div>
