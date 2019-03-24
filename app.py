@@ -58,11 +58,11 @@ def login():
         else:
             if check_password_hash(user.password, form.password.data):
                 login_user(user)    # creates a session and logs in the user
-                flash('Login was successful', 'success')
+                flash('You have been logged in!', 'success')
                 # update the user's plants with new days till_next_water
                 return redirect(url_for('profile'))
             else:
-                flash('Email or password incorrect.')
+                flash('Email or password incorrect.', 'danger')
     return render_template("login.html", form=form)
 
 
@@ -244,25 +244,139 @@ def user(username=None):
 if __name__ == '__main__':
     models.initialize()
     try:
+        # models.Plant.create_plant(
+        #     name="Beach Spider Lily ",
+        #     description="This amazing bulb based plant beach spider lily enjoys environments that are downright aquatic and easy",
+        #     water_interval_in_days= 3,
+        #     image="https://c8.alamy.com/comp/JAWKW0/beach-spider-lily-JAWKW0.jpg"
+        # )
+        # models.Plant.create_plant(
+        #     name="Bird Of Paradise ",
+        #     description="delightfully easy to care for plant that enjoys warm, balmy days year round.",
+        #     water_interval_in_days= 5,
+        #     image="http://gardeningsolutions.ifas.ufl.edu/images/plants/flowers/bird_paradise.jpg"
+        # )
+        # models.Plant.create_plant(
+        #     name="Eternal Flame",
+        #     description="Named Eternal flame for its attractive yellow bract.",
+        #     water_interval_in_days= 10,
+        #     image="http://www.greenmountainhosta.com/catalog/images/EternalFlame.jpg" 
+        # )
+        # models.Plant.create_plant(
+        #     name="Busy Lizzie",
+        #     description="Grown for their attractive blooms outdoors (just about everywhere) and indoors when given enough bright light.",
+        #     water_interval_in_days= 14,
+        #     image="https://hotemoji.com/images/dl/o/seedling-emoji-by-google.png"
+        # )
+        # models.Plant.create_plant(
+        #     name="Christmas Cactus",
+        #     description="The Christmas cactus is the ideal house plant if a grower likes to see flowers blooming from November - January",       
+        #     water_interval_in_days= 15,
+        #     image="https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/154471565/9be4b938b57b663aa33328e8e133aa5b.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=07e705505165f7e6a36a67a04603b420"
+        # )
+        # models.Plant.create_plant(
+        #     name="Elephant's Ear ",
+        #     description="A foliage plant with very distinct looking leaves - but it does flower.",
+        #     water_interval_in_days= 5,
+        #     image="https://www.americanmeadows.com/media/gene-cms/e/l/elephant_ear_container.jpg"
+        # )
+        # models.Plant.create_plant(
+        #     name="Rubber Plant",
+        #     description="One of the ficus greats with large glossy oval shaped leaves.",
+        #     water_interval_in_days= 6,
+        #     image="https://www.houseplantsexpert.com/image-files/ficus_elastica_decora.jpg"
+        # )
+        # models.Plant.create_plant(
+        #     name="Zebra Plant",
+        #     description="From the Marantaceae family of plants.",
+        #     water_interval_in_days= 9,
+        #     image="https://www.houseplantsexpert.com/images/zebrina.jpg"
+        # )
+        # models.Plant.create_plant(
+        #     name="Aluminum Plant",
+        #     description="An easy going house plant that is generally simple to please.",
+        #     water_interval_in_days= 5,
+        #     image="https://www.houseplantsexpert.com/assets/images/pilea-cadierei-1.jpg"
+        # )
+        # models.Plant.create_plant(
+        #     name="ZZ Plant",
+        #     description="The worst thing you can do to a ZZ plant is over water it, otherwise it survives well.",
+        #     water_interval_in_days= 7,
+        #     image="https://www.houseplantsexpert.com/assets/images/zamioculas_zamifolia.jpg"
+        # )
+        # models.Plant.create_plant(
+        #     name="Swiss Cheese Plant ",
+        #     description="A great looking foliage plant that grows taller than most indoor plants.",
+        #     water_interval_in_days= 8,
+        #     image="https://www.houseplantsexpert.com/assets/images/swiss_cheese_plant_leaf.jpg"
+        # )
+        # models.Plant.create_plant(
+        #     name="Watermelon Peperomia",
+        #     description="A low growing bushy type plant with striking leaves.",
+        #     water_interval_in_days= 5,
+        #     image="https://www.houseplantsexpert.com/images/watermelon_peperomia.jpg"
+        #     )
+        # models.Plant.create_plant(
+        #     name="Bird Of Paradise ",
+        #     description="delightfully easy to care for plant that enjoys warm, balmy days year round.",
+        #     water_interval_in_days= 5,
+        #     image="https://hotemoji.com/images/dl/o/seedling-emoji-by-google.png"
+        # )
+        # models.Plant.create_plant(
+        #     name="Tiger Jaws",
+        #     description="This species flowers at the end of summer and display jaw like leaves that are toothed.",
+        #     water_interval_in_days= 11,
+        #     image="https://www.houseplantsexpert.com/assets/images/faucaria_tigrina.jpg"
+        # )
+        # models.Plant.create_plant(
+        #     name="Bunny Ear Cactus  ",
+        #     description="The bunny ear cactus, also known as the polka dot cactus is a very popular plant.",
+        #     water_interval_in_days= 5,
+        #     image="https://www.houseplantsexpert.com/image-files/Opuntia-microdasys.jpg"
+        # )
+        # models.Plant.create_plant(
+        #     name="Sago Palm ",
+        #     description="An interesting species which only grows up to 2 feet tall indoors (it's not a palm).",
+        #     water_interval_in_days= 5,
+        #     image="https://www.houseplantsexpert.com/images/sago_palm.jpg"
+        # )
+        #  models.Plant.create_plant(
+        #     name="Jelly Beans",
+        #     description="The Jelly beans displays small finger like succulent leaves that develop red tips.",
+        #     water_interval_in_days= 5,
+        #     image="https://www.houseplantsexpert.com/assets/images/jelly_beans_plant.jpg"
+        # )
+        #  models.Plant.create_plant(
+        #     name="Croton",
+        #     description="Not an easy species to grow, although it's foliage is outstanding in color.",
+        #     water_interval_in_days= 6,
+        #     image="https://www.houseplantsexpert.com/image-files/croton1.jpg"
+        # )
+        #  models.Plant.create_plant(
+        #     name="Queens Tears",
+        #     description="The queens tears is a bromeliad plant which is easy enough for most growers to grow indoors.",
+        #     water_interval_in_days= 5,
+        #     image="https://www.houseplantsexpert.com/image-files/Billbergia-Nutans.jpg"
+        #   )
+        #  models.Plant.create_plant(
+        #     name="Urn Plant",
+        #     description="The Urn plant is also known as the silver vase plant.",
+        #     water_interval_in_days= 8,
+        #     image="https://www.houseplantsexpert.com/image-files/close-up-urn-plant-flower.jpg"
+        #  )
+        # models.Plant.create_plant(
+        #     name="Boston Fern",
+        #     description="One of the easier ferns to grow indoors.",
+        #     water_interval_in_days= 8,
+        #     image="https://www.houseplantsexpert.com/assets/images/boston_ferns_in_hanging_baskets_1.jpg"
+        #  )
         models.Plant.create_plant(
-            name="Spikey plant",
-            description="This is a spikey plant.",
-            water_interval_in_days= 20,
-            image="https://hotemoji.com/images/dl/o/seedling-emoji-by-google.png"
-        )
-        models.Plant.create_plant(
-            name="Happy plant",
-            description="This is a happy plant.",
-            water_interval_in_days= 7,
-            image="https://hotemoji.com/images/dl/o/seedling-emoji-by-google.png"
-        )
-        models.Plant.create_plant(
-            name="Grumpy plant",
-            description="This is a grumpy plant.",
-            water_interval_in_days= 14,
-            image="https://hotemoji.com/images/dl/o/seedling-emoji-by-google.png"
-        )
-        print('created plant')
+            name="Aloe Vera",
+            description="The Aloe Vera is a common house plant that has many potential heath benefits. An indoor Aloe is easy to grow and not demanding.",
+            water_interval_in_days= 8,
+            image="https://www.houseplantsexpert.com/assets/images/aloe-foliage-1.jpg"
+         )
+        # print('created plant')
     except ValueError:
         pass
     app.run(debug=DEBUG, port=PORT)
