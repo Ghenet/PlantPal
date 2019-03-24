@@ -5,7 +5,7 @@ from peewee import *
 from flask_login import UserMixin
 from flask_bcrypt import generate_password_hash
 
-DATABASE = SqliteDatabase('plant-pal.db')
+DATABASE = SqliteDatabase('plantpal.db')
 
 # UserMixin help import the set of tools for login
 
