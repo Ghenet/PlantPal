@@ -13,6 +13,11 @@ body{
 h3, h4 {
     font-family: 'Assistant', sans-serif;
 }
+
+.needs-water {
+    color:red;
+}
+
 .card-header{
     background-color: transparent;
 }
