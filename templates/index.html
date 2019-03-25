@@ -27,17 +27,12 @@
     </div>
     <div class="col-md-6">
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ut
-        iure, doloremque, quibusdam sit fugiat voluptates corporis delectus
-        exercitationem earum quidem, minus quam. Odit quo, nisi temporibus
-        suscipit explicabo quia a necessitatibus molestias, beatae soluta ex
-        harum doloribus incidunt nam non dignissimos animi hic? Excepturi iste
-        suscipit consequatur, debitis itaque vitae odit at nam a natus? Sapiente
-        officia illum doloremque. Illum, nulla deserunt? Itaque molestiae
-        voluptate nesciunt ex unde alias deserunt, dolorem ipsam delectus quam
-        repellat deleniti? Ipsum ipsam earum quis asperiores voluptatibus
-        reprehenderit! Rerum, voluptas fugit accusantium autem pariatur nisi
-        veritatis sequi vero laborum culpa, veniam, earum tempora eaque!
+        Many plant owners agree, although they love their seedlings and saplings they do miss the occasional watering.
+        Life is busy and you need help with watering your plants. That's why we created PlantPal. We provide you with an
+        easy to use reminder system of which plants you need to water and how often. Pick your plants and the frequency of
+        watering will begin calculating automatically. Each time you log in or whenever you have exceeded the days you need
+        to water your plant, PlantPal will let you know it's time. That way you can focus on growing your beautiful garden,
+        and your plants can focus on growing.
       </p>
     </div>
   </div>
@@ -59,7 +54,7 @@
     </div>
         <div class="col-md-4 mr-5">
           <img
-            src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fcdn.modernfarmer.com%2Fwp-content%2Fuploads%2F2016%2F07%2FMG_8515.jpg&f=1"
+            src="{{ url_for('static', filename='green2.jpeg') }}"
             alt="" class="img-fluid rounded" />
         </div>
   </div>
@@ -72,43 +67,34 @@
     <div class="row d-flex align-items-stretch">
       <div class="col-md-4">
         <div class="card">
-          <img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.emoji.co.uk%2Ffiles%2Fphantom-open-emojis%2Fanimals-nature-phantom%2F12473-herb.png&f=1" class="card-img-top" alt="..." />
+          <img src="{{ url_for('static', filename='potted-1.jpg') }}" class="card-img-top" alt="..." />
           <div class="card-body">
             <h3 class="card-title">Plant</h3>
             <h4 class="card-title">Days until next watering: 3</h4>
             <h6 class="card-title">Last Watering: 3/16/19</h6>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
+            <button class="btn btn-info">Water</button>
           </div>
         </div>
       </div>
       <div class="col-md-4">
                 <div class="card">
-                    <img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fs3.amazonaws.com%2Fpix.iemoji.com%2Fimages%2Femoji%2Fapple%2Fios-10%2F256%2Fpalm-tree.png&f=1" class="card-img-top" alt="..." />
+                    <img src="{{ url_for('static', filename='potted-2.jpg') }}" class="card-img-top" alt="..." />
                     <div class="card-body">
             <h3 class="card-title">Plant</h3>
             <h4 class="card-title">Days until next watering: 3</h4>
             <h6 class="card-title">Last Watering: 3/16/19</h6>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up the
-                            bulk of the card's content.
-                        </p>
+            <button class="btn btn-info">Water</button>
                     </div>
                 </div>
         </div>
         <div class="col-md-4">
                 <div class="card">
-                    <img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2F736x%2Fe3%2F94%2F16%2Fe394164477b165325435c4dfeadbaabb.jpg&f=1" class="card-img-top" alt="..." />
+                    <img src="{{ url_for('static', filename='potted-3.jpg') }}" class="card-img-top" alt="..." />
                     <div class="card-body">
             <h3 class="card-title">Plant</h3>
             <h4 class="card-title">Days until next watering: 3</h4>
             <h6 class="card-title">Last Watering: 3/16/19</h6>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up the
-                            bulk of the card's content.
-                        </p>
+                        <button class="btn btn-info">Water</button>
                     </div>
                 </div>
 

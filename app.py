@@ -109,7 +109,7 @@ def profile(username=None):
 
 
 @app.route('/plants/', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def plants():
     form = forms.UsersPlantForm()
     plants = models.Plant.select()

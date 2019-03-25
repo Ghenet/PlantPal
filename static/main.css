@@ -37,6 +37,10 @@ a:hover{
   color: white
 }
 
+.alert-message {
+  color: white;
+  text-align: center
+}
 
 
 header {
