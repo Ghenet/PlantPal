@@ -24,3 +24,12 @@ Technologies Used:
 PlantPal App File Hierarchy:
 
 ![plantpal Hierarchy](https://cdn.glitch.com/3f59e2c6-0558-4467-9057-8202e97223b4%2FScreen%20Shot%202019-03-24%20at%2011.29.08%20PM.png?1553495377297)
+
+
+Challenges and Wins
+Wins :
+  - Core understanding of the languages ,ORM and libraries we used 
+  - Creating multiple user’s plants at the same time
+Challenges:
+   - Deployment
+   - Updating the user’s plants (notes and watering)
