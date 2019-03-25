@@ -27,9 +27,9 @@ PlantPal App File Hierarchy:
 
 
 Challenges and Wins
-Wins :
-  - Core understanding of the languages ,ORM and libraries we used 
-  - Creating multiple user’s plants at the same time
-Challenges:
+  Wins :
+   - Core understanding of the languages ,ORM and libraries we used 
+   - Creating multiple user’s plants at the same time
+  Challenges:
    - Deployment
    - Updating the user’s plants (notes and watering)
