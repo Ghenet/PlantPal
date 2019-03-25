@@ -50,7 +50,7 @@
                             <p>Days till next water: 
                                 {{ number_days }} days
                                 {% if number_days|int() > plant.plant.water_interval_in_days|int() %}
-                                <p>You must water me!</p>
+                                <p class="needs-water bounce">You must water me!</p>
                                 {% endif %}
                             </p>
                             <a id="water-plant" class="btn btn-info m-2 " href="users_plants/{{plant.id}}/water">Water</a>
