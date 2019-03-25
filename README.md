@@ -8,12 +8,16 @@
 
 
 
+
+
 Technologies Used:
 - Python Flask 
 - Sqlite DB
 - Peewee
 - JavaScript and Ajax
 - Custom HTML, CSS, Bootstrap
+
+
 
 
 
