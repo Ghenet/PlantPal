@@ -45,7 +45,7 @@ This code in our profile template gives the user a warning once their plant hasn
 
 When the user hits the button to add new plants, the selected plants are grabbed from the page. Then we parsed through the collection to get the plant id and any notes the user may have added and add them to respective arrays. They we sent the arrays to the backend and opened the arrays to add the data inside to create new users' plants. We ended up learning that we could send arrays to the backend and how to parse through the information with Python.
 
-![](https://trello-attachments.s3.amazonaws.com/5c8fe1271ba21e4277577ca1/5c9a4e81a3048e74e1b7fcb7/f7bd3a131bfe3ba236ce9ca088796e8a/Screen_Shot_2019-03-24_at_9.05.12_PM.png
+![](https://trello-attachments.s3.amazonaws.com/5c8fe1271ba21e4277577ca1/5c9a4e81a3048e74e1b7fcb7/f7bd3a131bfe3ba236ce9ca088796e8a/Screen_Shot_2019-03-24_at_9.05.12_PM.png)
 
 ## PlantPal App File Hierarchy:
 
