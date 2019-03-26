@@ -1,4 +1,8 @@
 # PlantPal
+PlantPal is an app designed to simplify plant owners' lives and help them keep their plants alive. Users can sign up and add which plants they have from a designated list. Once they add their plants, it will automatically begin calculating when the plants' next water day is. When you have exceed the amount of time between waterings, the tracker will let you know and you can reset the counter after you water your plant.
+
+https://plant-pal.herokuapp.com/
+
 ![profile](https://cdn.glitch.com/3f59e2c6-0558-4467-9057-8202e97223b4%2FScreen%20Shot%202019-03-24%20at%203.32.57%20PM.png?1553495462186)
 
 
